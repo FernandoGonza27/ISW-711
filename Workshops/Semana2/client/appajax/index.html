@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 1 - Consume API</title>
+    <link rel="stylesheet" type="text/css" href="style/index.css"/>
+</head>
+
+<body onload="onMyLoad()">
+    
+    <div class="App-body">
+        <h1>Type of change</h1>
+    <label>
+        Usd:
+    </label>
+    <h2 id="labelUsd">0</h2>
+    <label>
+        Eur:
+    </label>
+    <h2 id="labelEur">0</h2>
+    <label>List of countrys</label>
+    <select class="select" name="countrys" id="countrys" onchange="handleInputChangeMoney(this)">
+    </select>
+    </div>
+</body>
+<script src="logic/logic.js"></script>
+
+</html>
