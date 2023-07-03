@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "api with the proyect al prompts",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "nodemon index.js"
   },

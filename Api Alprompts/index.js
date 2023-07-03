@@ -1,20 +1,36 @@
-const express = require('express');
+//imports
+import express from "express";
+import dotenv from "dotenv";
+import mongoose from "mongoose";
+import cors from "cors";
+//import authRoute  from "./routes/auth.js";
+//import promptsRoute  from "./routes/prompts.js";
+//import tagsRoute  from "./routes/tags.js";
+import usersRoute  from "./routes/users.js";
 
-require('dotenv').config()
+
+dotenv.config();
+
 const app = express();
 // database connection
-const mongoose = require("mongoose");
 
-//connection with moongoo
+
+
 app.use(express.json());
 
 // check for cors
-const cors = require("cors");
+
 app.use(cors({
   domains: '*',
   methods: "*"
 }));
 
+//app.use("/api/auth",authRoute);
+app.use("/api/users",usersRoute);
+//app.use("/api/prompts",promptsRoute);
+//app.use("/api/tags",tagsRoute);
+
+//connection with moongoo
 const connect = async () =>{
     
     try {
@@ -24,7 +40,20 @@ const connect = async () =>{
         throw error;
     }
 }
+
+//Middlewere para error handlind, entregando mensajes de manera personalizada
+app.use((err,req,res,next)=>{
+    const errorStatus = err.status || 500
+    const errorMessage = err.message || 500
+    return res.status(errorStatus).json({
+        success:false,
+        status:errorStatus,
+        message:errorMessage,
+        stack:err.stack,
+    });
+});
 app.listen(3300,()=>{
     connect();
-    console.log("Connected to backend")
+    console.log("Connected to backend");
+    console.log("lisent with the port 3300");
 });
